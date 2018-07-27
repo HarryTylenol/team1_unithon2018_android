@@ -1,11 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.unithon2018.team1.team1unithon2018android">
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.PostActivity" />
+        <activity android:name=".ui.activity.RoomActivity"></activity>
+    </application>
+
 </manifest>
