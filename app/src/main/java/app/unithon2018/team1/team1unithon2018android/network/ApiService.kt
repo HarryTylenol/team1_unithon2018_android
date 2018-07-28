@@ -4,6 +4,7 @@ import app.unithon2018.team1.team1unithon2018android.model.Event
 import app.unithon2018.team1.team1unithon2018android.model.Room
 import app.unithon2018.team1.team1unithon2018android.model.TimeLine
 import app.unithon2018.team1.team1unithon2018android.model.TokenData
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -28,8 +29,8 @@ interface ApiService {
 
   @GET("/events/{event_id}")
   fun fetchEvent(
-          @Header("access_token") access_token: String,
-          @Path("event_id") eventId: Int
+      @Header("access_token") access_token: String,
+      @Path("event_id") eventId: Int
   ): Call<Event>
 
   @GET("/posts")
@@ -37,4 +38,11 @@ interface ApiService {
           @Header("access_token") access_token: String,
           @Field("page") page: Int
   ): Call<List<TimeLine>>
+
+  @GET("/events/{event_id}/leave")
+  fun leaveEvent(
+      @Header("access_token") access_token: String,
+      @Path("event_id") eventId: Int
+  ): Call<ResponseBody>
+
 }

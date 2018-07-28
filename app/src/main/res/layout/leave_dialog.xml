@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            app:srcCompat="@drawable/ic_charactor"
+            android:layout_margin="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:padding="24dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:textColor="#1f1f1f"
+            android:gravity="center_horizontal"
+            android:text="지정된 장소에서 벗어나셨어요
+12시간 뒤  저장된 사진이 삭제됩니다
+빨리빨리 저장 팥팥!" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cancel"
+                android:textColor="@android:color/white"
+                android:background="#bebebe"
+                android:gravity="center"
+                android:padding="18dp"
+                android:text="괜찮아요"
+                android:layout_weight="4"
+                android:textSize="16sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/save"
+                android:background="@color/colorAccent"
+                android:padding="18dp"
+                android:layout_weight="6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="저장하러 바로 파파팥" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

@@ -90,6 +90,7 @@ class LoginActivity : AppCompatActivity(), AuthStateListener {
         log<LoginActivity>(accessToken)
 
         showLoadUI(false)
+        finish()
         startActivity(Intent(
             this@LoginActivity,
             if (isGranted) MainActivity::class.java
