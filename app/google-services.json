@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "22730838543-81hv5qbn8qovcpfaide9ppg6q55b146i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.unithon2018.team1.team1unithon2018android",
+            "certificate_hash": "d8013b45e77f6e3267bdbd8fa3a2b5e37677ac69"
+          }
+        },
+        {
+          "client_id": "22730838543-ph53hn15ftiau4p2fgmcoa8lu9th1f5s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.unithon2018.team1.team1unithon2018android",
+            "certificate_hash": "3e302e638300b791ce88926d8962fbda346e57f6"
+          }
+        },
+        {
+          "client_id": "22730838543-lfk855kb20pfndvida3e620ugl8hnopo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.unithon2018.team1.team1unithon2018android",
+            "certificate_hash": "16d461bfc92ce6327fb354954103b70ea4a8e728"
+          }
+        },
+        {
           "client_id": "22730838543-1gf1s8rs6vegbj1bavgo8s96u8537so8.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +53,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22730838543-1gf1s8rs6vegbj1bavgo8s96u8537so8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

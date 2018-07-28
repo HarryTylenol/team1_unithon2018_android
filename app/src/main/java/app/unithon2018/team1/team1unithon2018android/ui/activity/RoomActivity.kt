@@ -11,8 +11,8 @@ class RoomActivity : AppCompatActivity() {
 
   private val apiService = ApiManager.getApiService()
 
-  private val roomRepository by lazy { RoomRepository.instance(apiService) }
-  private val postRepository by lazy { PostRepository.instance(apiService) }
+  private val roomRepository by lazy { RoomRepository.instance(this, apiService) }
+  private val postRepository by lazy { PostRepository.instance(this, apiService) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
