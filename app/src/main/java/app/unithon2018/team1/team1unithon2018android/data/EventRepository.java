@@ -37,7 +37,7 @@ public class EventRepository {
 
     public void fetchEvent(int eventId, final FetchEventCallback eventCallback) {
         Log.d("zcx", "11");
-        apiService.fetchEvent(preference, eventId, new FetchEventCallback() {
+        apiService.fetchEvent(eventId, new FetchEventCallback() {
             @Override
             public void onEventFetched(Event event) {
                 eventCallback.onEventFetched(event);

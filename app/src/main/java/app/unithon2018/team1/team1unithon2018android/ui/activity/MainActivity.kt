@@ -2,10 +2,9 @@ package app.unithon2018.team1.team1unithon2018android.ui.activity
 
 import android.annotation.SuppressLint
 import android.location.Location
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import app.unithon2018.team1.team1unithon2018android.data.PostRepository
-
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import app.unithon2018.team1.team1unithon2018android.data.RoomRepository
 import app.unithon2018.team1.team1unithon2018android.ext.mainThread
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
@@ -16,20 +15,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
-import com.google.android.gms.location.SettingsClient
-import com.google.android.gms.location.LocationSettingsRequest
-import com.google.android.gms.location.LocationRequest
-import android.os.Looper
-import android.support.v4.content.ContextCompat
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.maps.model.CircleOptions
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.coroutines.experimental.async
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
