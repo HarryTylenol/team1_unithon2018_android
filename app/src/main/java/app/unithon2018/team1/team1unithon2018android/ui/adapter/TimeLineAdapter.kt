@@ -28,8 +28,14 @@ class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
       val hashtags = timeLine.hashtags
 
-//      for()
-//      content.hash_tags =
+      val stringBuilder = StringBuilder()
+      for (item in hashtags) {
+        stringBuilder.append("#" + item)
+      }
+
+      hash_tags.text = stringBuilder.toString()
+
+
     }
 
   }
