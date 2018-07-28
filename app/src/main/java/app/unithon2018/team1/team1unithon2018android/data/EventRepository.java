@@ -45,6 +45,8 @@ public class EventRepository {
             public void onResponse(Call<Event> call, Response<Event> response) {
                 if(response.isSuccessful()) {
                     eventCallback.onEventFetched(response.body());
+                } else {
+                    Log.d("!!exception", response.message());
                 }
             }
 

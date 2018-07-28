@@ -25,10 +25,10 @@ class EventPagerAdapter(context: Context, list: List<String>) : PagerAdapter() {
 
         val roomImage = view.findViewById<ImageView>(R.id.room_image)
 
-        val url = "http://52.78.84.8:5000" + list[position]
+        val url = "http://52.79.230.255:5000" + list[position]
 
-        Log.d("zxcv", url)
 
+        Log.d("z2f", "adsf"  + url)
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
