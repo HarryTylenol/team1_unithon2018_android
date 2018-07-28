@@ -12,12 +12,15 @@
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.PostActivity" />
         <activity android:name=".ui.activity.RoomActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.UploadActivity" />
+        <activity android:name=".ui.activity.MyProfileActivity"></activity>
     </application>
 
 </manifest>
