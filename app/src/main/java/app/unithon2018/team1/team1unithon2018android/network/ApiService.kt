@@ -1,14 +1,10 @@
 package app.unithon2018.team1.team1unithon2018android.network
 
+import app.unithon2018.team1.team1unithon2018android.model.Event
 import app.unithon2018.team1.team1unithon2018android.model.Room
 import app.unithon2018.team1.team1unithon2018android.model.TokenData
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -28,5 +24,11 @@ interface ApiService {
       @Query("lat") lat: Double,
       @Query("lng") lng: Double
   ): Call<List<Room>>
+
+  @GET("/events/{event_id}")
+  fun fetchEvent(
+          @Header("access_token") access_token: String,
+          @Path("event_id") eventId: Int
+  ): Call<Event>
 
 }
