@@ -11,12 +11,13 @@ class MainActivity : AppCompatActivity() {
 
   private val apiService = ApiManager.getApiService()
 
-  private val roomRepository by lazy { RoomRepository(apiService) }
-  private val postRepository by lazy { PostRepository(apiService) }
+  private val roomRepository by lazy { RoomRepository.instance(apiService) }
+  private val postRepository by lazy { PostRepository.instance(apiService) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
   }
+
 }

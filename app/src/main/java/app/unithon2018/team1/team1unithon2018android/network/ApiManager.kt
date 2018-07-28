@@ -5,12 +5,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiManager {
 
-  private val retrofit = Retrofit.Builder()
-      .baseUrl("")
-      .addConverterFactory(GsonConverterFactory.create())
-      .build()
+  private val URL = "https://..."
+
+  private val retrofit =
+      Retrofit.Builder()
+          .baseUrl(URL)
+          .addConverterFactory(GsonConverterFactory.create())
+          .build()
 
   fun getApiService() = retrofit.create(
       ApiService::class.java)
+
 
 }

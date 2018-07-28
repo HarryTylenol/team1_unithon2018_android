@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "22730838543",
+    "firebase_url": "https://team1-unithon2018-2.firebaseio.com",
+    "project_id": "team1-unithon2018-2",
+    "storage_bucket": "team1-unithon2018-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22730838543:android:102882cce71a2887",
+        "android_client_info": {
+          "package_name": "app.unithon2018.team1.team1unithon2018android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22730838543-1gf1s8rs6vegbj1bavgo8s96u8537so8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVjqJEbbWkPrZc_Q4n6MITvRFkPy_LYnU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

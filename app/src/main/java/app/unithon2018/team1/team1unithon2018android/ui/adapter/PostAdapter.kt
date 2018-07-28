@@ -23,7 +23,6 @@ class PostAdapter : RecyclerView.Adapter<PostViewHolder>() {
     }
   }
 
-
   override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) =
       PostViewHolder(View.inflate(viewGroup.context, R.layout.post_item_view, null))
 

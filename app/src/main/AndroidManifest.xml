@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.PostActivity" />
-        <activity android:name=".ui.activity.RoomActivity"></activity>
+        <activity android:name=".ui.activity.RoomActivity" />
+        <activity android:name=".ui.activity.LoginActivity"></activity>
     </application>
 
 </manifest>
