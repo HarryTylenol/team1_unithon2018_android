@@ -57,9 +57,8 @@
       android:value="@string/google_maps_key"/>
 
     <activity
-      android:label="@string/title_activity_time_line"
       android:name=".ui.activity.TimeLineActivity"
-      android:theme="@style/AppTheme.NoTitle.White">
+      android:theme="@style/AppTheme.NoTitle">
     </activity>
   </application>
 

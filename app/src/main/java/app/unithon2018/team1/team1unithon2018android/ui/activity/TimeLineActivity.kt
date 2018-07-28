@@ -1,6 +1,8 @@
 package app.unithon2018.team1.team1unithon2018android.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
@@ -24,12 +26,16 @@ class TimeLineActivity : AppCompatActivity() {
     }
 
     private val accessToken by StringPreference(this)
+
     private val timeRepository by lazy { TimeLineRepository.instance(accessToken, apiService) }
+
+    private var page = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_line)
-        setSupportActionBar(toolbar)
+
+//        setSupportActionBar(toolbar)
 
         val timeLineName = intent.getStringExtra("name")
         name.text = timeLineName
@@ -37,6 +43,7 @@ class TimeLineActivity : AppCompatActivity() {
         with(timeline_recycler) {
             layoutManager = LinearLayoutManager(this@TimeLineActivity)
             adapter = timeAdapter
+            isNestedScrollingEnabled = false
         }
 
         fetchTimeLines()
@@ -45,15 +52,22 @@ class TimeLineActivity : AppCompatActivity() {
     }
 
     private fun fetchTimeLines() {
-        timeRepository.fetchTimeLine(0) { it ->
-            Log.d("zxcvq", it.size.toString() + "!")
+        timeRepository.fetchTimeLine(page++) { it ->
+            Log.d("zxcv", page.toString() + "!")
             timeAdapter.addTimeLines(it)
         }
     }
 
     private fun initializeClickListener() {
         fab.setOnClickListener { view ->
+            startActivity(Intent(this, UploadActivity::class.java))
+        }
 
+        swipe_refresh.setOnRefreshListener {
+            Handler().postDelayed({
+                fetchTimeLines()
+                swipe_refresh.isRefreshing = false
+            }, 3000)
         }
     }
 

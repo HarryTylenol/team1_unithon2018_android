@@ -10,6 +10,8 @@ import app.unithon2018.team1.team1unithon2018android.R
 import app.unithon2018.team1.team1unithon2018android.model.TimeLine
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.TimeLineAdapter.PostViewHolder
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.timeline_item_view.view.*
 
 class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
@@ -41,6 +43,7 @@ class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
       user_nickname.text = timeLine.user[0].nickname
       Glide.with(App.getInstance())
               .load("http://52.79.230.255:5000" + timeLine.user[0].image)
+              .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
               .into(user_img)
 
       with(nested_timeline_recycler) {
