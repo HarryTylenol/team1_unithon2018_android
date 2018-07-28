@@ -59,6 +59,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         .findFragmentById(R.id.map) as SupportMapFragment
     mapFragment.getMapAsync(this)
 
+    my_profile_button.setOnClickListener {
+      startActivity(Intent(this, MyProfileActivity::class.java))
+    }
+
     refresh_location_button.setOnClickListener {
       refreshLocation()
     }
