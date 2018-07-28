@@ -16,7 +16,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
-
 class LoginActivity : AppCompatActivity() {
 
   private val RC_SIGN_IN = 0

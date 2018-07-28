@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiManager {
 
-  private val URL = "https://..."
+  private val URL = "https://sample.com/"
 
   private val retrofit =
       Retrofit.Builder()
