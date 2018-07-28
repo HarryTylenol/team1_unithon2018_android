@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import app.unithon2018.team1.team1unithon2018android.R
-import kotlinx.android.synthetic.main.room_item_view.view.*
+import kotlinx.android.synthetic.main.event_item_view.view.*
 
 
 internal class RoomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,6 +29,6 @@ internal class RoomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             LayoutInflater.from(parent.context)
-                    .inflate(R.layout.room_item_view, parent, false))
+                    .inflate(R.layout.event_item_view, parent, false))
 
 }

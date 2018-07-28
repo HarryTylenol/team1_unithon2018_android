@@ -21,7 +21,7 @@ class RoomPagerAdapter(context: Context, list: ArrayList<Uri>) : PagerAdapter() 
   private val list = list
 
   override fun instantiateItem(container: ViewGroup, position: Int): Any {
-    val view = LayoutInflater.from(context).inflate(R.layout.room_pager_adapter, container, false)
+    val view = LayoutInflater.from(context).inflate(R.layout.event_pager_adapter, container, false)
 
     val roomImage = view.findViewById<ImageView>(R.id.room_image)
 

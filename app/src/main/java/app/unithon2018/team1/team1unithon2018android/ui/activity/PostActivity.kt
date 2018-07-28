@@ -4,14 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import app.unithon2018.team1.team1unithon2018android.R
 import app.unithon2018.team1.team1unithon2018android.data.PostRepository
-import app.unithon2018.team1.team1unithon2018android.data.RoomRepository
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
-import android.widget.Toast
-import android.R.menu
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
+import app.unithon2018.team1.team1unithon2018android.data.EventRepository
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.PostAdapter
 import kotlinx.android.synthetic.main.activity_post.*
 
@@ -24,7 +21,7 @@ class PostActivity : AppCompatActivity() {
     PostAdapter()
   }
 
-  private val roomRepository by lazy { RoomRepository.instance(apiService) }
+  private val roomRepository by lazy { EventRepository.instance(apiService) }
   private val postRepository by lazy { PostRepository.instance(apiService) }
 
   override fun onCreate(savedInstanceState: Bundle?) {

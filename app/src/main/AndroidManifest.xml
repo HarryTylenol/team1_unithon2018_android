@@ -22,16 +22,16 @@
         <activity
           android:name=".ui.activity.PostActivity"
           android:theme="@style/AppTheme.NoTitle">
+
+        </activity>
+        <activity
+          android:name=".ui.activity.EventActivity"
+          android:theme="@style/AppTheme.NoTitle">
           <intent-filter>
             <category android:name="android.intent.category.LAUNCHER" />
 
             <action android:name="android.intent.action.MAIN" />
           </intent-filter>
-        </activity>
-        <activity
-          android:name=".ui.activity.RoomActivity"
-          android:theme="@style/AppTheme.NoTitle">
-
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.UploadActivity" />
