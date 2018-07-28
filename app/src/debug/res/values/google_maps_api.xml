@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=D8:01:3B:45:E7:7F:6E:32:67:BD:BD:8F:A3:A2:B5:E3:76:77:AC:69%3Bapp.unithon2018.team1.team1unithon2018android.ui.activity
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    D8:01:3B:45:E7:7F:6E:32:67:BD:BD:8F:A3:A2:B5:E3:76:77:AC:69
+
+    SHA-1 certificate fingerprint:
+    D8:01:3B:45:E7:7F:6E:32:67:BD:BD:8F:A3:A2:B5:E3:76:77:AC:69
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA3-a1-F6VxP-1QB_cpuTsbCfUyrFsglHc</string>
+</resources>
