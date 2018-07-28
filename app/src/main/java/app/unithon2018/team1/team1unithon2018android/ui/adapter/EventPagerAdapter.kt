@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import app.unithon2018.team1.team1unithon2018android.App
 import app.unithon2018.team1.team1unithon2018android.R
+import app.unithon2018.team1.team1unithon2018android.R.id.room_image
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -21,18 +23,14 @@ class EventPagerAdapter(context: Context, list: List<String>) : PagerAdapter() {
     private val list = list
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val view = LayoutInflater.from(context).inflate(R.layout.event_pager_adapter, container, false)
-
-        val roomImage = view.findViewById<ImageView>(R.id.room_image)
+        val view = LayoutInflater.from(container.context).inflate(R.layout.event_pager_adapter, container, false)
 
         val url = "http://52.79.230.255:5000" + list[position]
 
-
         Log.d("z2f", "adsf"  + url)
-        Glide.with(context)
+        Glide.with(App.getInstance())
                 .load(url)
-                .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(roomImage)
+                .into(view as ImageView)
 
         return view
     }

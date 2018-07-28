@@ -1,18 +1,25 @@
 package app.unithon2018.team1.team1unithon2018android.ui.activity
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import app.unithon2018.team1.team1unithon2018android.R
 import app.unithon2018.team1.team1unithon2018android.data.EventRepository
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
+import app.unithon2018.team1.team1unithon2018android.model.Event
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventAdapter
+import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventFragmentPagerAdapter
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventPagerAdapter
 import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : AppCompatActivity() {
+
+    private lateinit var event: Event
+
     private val apiService = ApiManager.getApiService()
 
     private val eventAdapter by lazy {
@@ -32,20 +39,39 @@ class EventActivity : AppCompatActivity() {
         }
 
         fetchEvent(intent.extras.getInt("id", -1))
+
+        initializeClickListener()
+    }
+
+    private fun initializeClickListener() {
+        join.setOnClickListener {
+            val intent = Intent(this, TimeLineActivity::class.java).apply {
+                putExtra("name", event.name)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun fetchEvent(id: Int) {
         eventRepository.fetchEvent(id) { it ->
+            event = it
+
             name.text = it.name
             location.text = it.location
-            date.text = it.start_at + "-" + it.end_at
+
+            val start = it.start_at.replace("-", ".")
+            val startDate = start.substring(0, start.indexOf(" "))
+
+            val end = it.end_at.replace("-", ".")
+            val endDate = end.substring(5, 10)
+
+            date.text = startDate + "-" + endDate
+
             count.text = it.members_count.toString()
 
             eventAdapter.addTags(it.hashtags)
 
-            Log.d("Zcxv", it.images.count().toString())
-
-            event_viewpager.adapter = EventPagerAdapter(this, it.images)
+            event_viewpager.adapter = EventFragmentPagerAdapter(supportFragmentManager, it.images)
             room_tablayout.setupWithViewPager(event_viewpager, true)
         }
     }
