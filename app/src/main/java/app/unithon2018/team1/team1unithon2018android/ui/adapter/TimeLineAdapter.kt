@@ -43,15 +43,14 @@ class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
       user_nickname.text = timeLine.user[0].nickname
       Glide.with(App.getInstance())
               .load("http://52.79.230.255:5000" + timeLine.user[0].image)
-              .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
               .into(user_img)
 
-      with(nested_timeline_recycler) {
-        layoutManager = LinearLayoutManager(App.getInstance(), LinearLayoutManager.HORIZONTAL, false)
-        adapter = timeImgAdapter
-      }
+        with(nested_timeline_recycler) {
+            layoutManager = LinearLayoutManager(App.getInstance(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = timeImgAdapter
+        }
 
-      timeImgAdapter.addImages(timeLine.files)
+        timeImgAdapter.addImages(timeLine.files)
     }
 
   }

@@ -1,6 +1,7 @@
 package app.unithon2018.team1.team1unithon2018android.ui.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -15,9 +16,12 @@ import app.unithon2018.team1.team1unithon2018android.data.TimeLineRepository
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.TimeLineAdapter
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import kotlinx.android.synthetic.main.activity_time_line.*
 
-class TimeLineActivity : AppCompatActivity() {
+class TimeLineActivity : AppCompatActivity(), SwipyRefreshLayout.OnRefreshListener {
+
 
     private val apiService = ApiManager.getApiService()
 
@@ -63,12 +67,16 @@ class TimeLineActivity : AppCompatActivity() {
             startActivity(Intent(this, UploadActivity::class.java))
         }
 
-        swipe_refresh.setOnRefreshListener {
-            Handler().postDelayed({
-                fetchTimeLines()
-                swipe_refresh.isRefreshing = false
-            }, 3000)
-        }
+        swipe_refresh.setOnRefreshListener(this)
+        swipe_refresh.setColorSchemeColors(Color.YELLOW, Color.RED, Color.GREEN)
+    }
+
+    override fun onRefresh(direction: SwipyRefreshLayoutDirection?) {
+        Handler().postDelayed({
+            fetchTimeLines()
+            Log.d("Zcxv", "d")
+            swipe_refresh.isRefreshing = false
+        }, 3000)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
