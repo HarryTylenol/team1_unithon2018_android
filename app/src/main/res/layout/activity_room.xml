@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.RoomActivity">
 
-  <LinearLayout
+  <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="0dp"
+    android:layout_weight="1">
 
     <android.support.constraint.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1">
+
       <TextView
         android:id="@+id/title"
         android:text="UNITHON"
@@ -85,46 +87,46 @@
         android:background="#979797"
         app:layout_constraintTop_toBottomOf="@+id/unit"/>
 
-      <ImageView
-        android:id="@+id/circle"
-        android:background="@drawable/circle"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginLeft="16dp"
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/room_recycler"
+        android:layout_marginLeft="1dp"
         android:layout_marginTop="13.9dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seperator"/>
-      <ImageView
-        android:background="@drawable/circle"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="13.9dp"
-        app:layout_constraintLeft_toRightOf="@+id/circle"
-        app:layout_constraintTop_toBottomOf="@+id/seperator"/>
 
-      <android.support.design.widget.TabLayout
-        android:id="@+id/room_tablayout"
+      <android.support.v4.view.ViewPager
+        android:id="@+id/room_viewpager"
         android:layout_width="match_parent"
         android:layout_height="298dp"
         android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circle"/>
+        app:layout_constraintTop_toBottomOf="@+id/room_recycler"/>
 
-      <android.support.v4.view.ViewPager
+      <android.support.design.widget.TabLayout
+        android:id="@+id/room_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_viewpager"/>
 
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#717171"
-      android:text="입장하기"
-      android:textColor="#ffffff"
-      android:textSize="13dp"
-      android:layout_gravity="bottom"/>
-  </LinearLayout>
-</ScrollView>
+  </ScrollView>
+
+  <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#717171"
+    android:text="입장하기"
+    android:textColor="#ffffff"
+    android:textSize="13dp"
+    android:layout_gravity="bottom"/>
+
+</LinearLayout>
