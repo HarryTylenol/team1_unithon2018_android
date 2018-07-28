@@ -1,6 +1,8 @@
 package app.unithon2018.team1.team1unithon2018android.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -51,13 +53,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    setSupportActionBar(toolbar)
-
+    //    setSupportActionBar(toolbar)
 
     val mapFragment = supportFragmentManager
         .findFragmentById(R.id.map) as SupportMapFragment
     mapFragment.getMapAsync(this)
 
+    refresh_location_button.setOnClickListener {
+      refreshLocation()
+    }
+  }
+
+  @SuppressLint("MissingPermission")
+  fun refreshLocation() {
+    map.clear()
+    locationClient.lastLocation.addOnSuccessListener {
+      if (it != null) onLocationUpdated(it)
+    }
   }
 
   @SuppressLint("MissingPermission")
@@ -66,9 +78,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     map.setPadding(0, 100, 0, 0)
     map.isMyLocationEnabled = true
     map.uiSettings.isCompassEnabled = false
-    locationClient.lastLocation.addOnSuccessListener {
-      if (it != null) onLocationUpdated(it)
-    }
+    map.uiSettings.isMyLocationButtonEnabled = false
+    refreshLocation()
   }
 
   private fun onLocationUpdated(location: Location) {
@@ -82,20 +93,35 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
       val searchedRoom = async {
         roomRepository.searchRoom(latLng)
       }.await()
+      val circleFillColor = ContextCompat.getColor(this@MainActivity, R.color.colorCircleFill)
       searchedRoom.sortedByDescending { it.radius.toLong() }.forEach {
+        val alpha = when (it.members_count) {
+          in 0..40   -> 50
+          in 40..300 -> 100
+          else       -> 180
+        }
         map.addCircle(CircleOptions()
                           .strokeWidth(8f)
                           .fillColor(
-                              ContextCompat.getColor(this@MainActivity, R.color.colorCircleFill)
+                              Color.argb(
+                                  alpha,
+                                  Color.red(circleFillColor),
+                                  Color.green(circleFillColor),
+                                  Color.blue(circleFillColor)
+                              )
                           )
                           .center(LatLng(it.lat, it.lng
                           ))
                           .strokeColor(
-                              ContextCompat.getColor(this@MainActivity, R.color.colorAccent))
+                              ContextCompat.getColor(this@MainActivity, R.color.colorAccent2))
                           .radius(it.radius.toDouble())
         )
       }
-      val adapter = RoomAdapter()
+      val adapter = RoomAdapter {
+        startActivity(Intent(this@MainActivity, RoomActivity::class.java).apply {
+          putExtra("id", it.id)
+        })
+      }
       adapter.list = searchedRoom
       event_recyclerview.adapter = adapter
     }
