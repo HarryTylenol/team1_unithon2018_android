@@ -1,9 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.RoomActivity">
 
-</android.support.constraint.ConstraintLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+      <TextView
+        android:id="@+id/title"
+        android:text="UNITHON"
+        android:textSize="36dp"
+        android:textColor="#1f1f1f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+      <TextView
+        android:id="@+id/location"
+        android:text="서울 창업 허"
+        android:textColor="#1f1f1f"
+        android:textSize="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+      <TextView
+        android:id="@+id/date"
+        android:text="2018.07.27-07.29"
+        android:textColor="#1f1f1f"
+        android:textSize="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location"/>
+
+      <TextView
+        android:id="@+id/count"
+        android:text="82"
+        android:textColor="#1f1f1f"
+        android:textSize="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintRight_toLeftOf="@+id/unit"/>
+
+      <TextView
+        android:id="@+id/unit"
+        android:text="명"
+        android:textColor="#1f1f1f"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/count"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"/>
+
+      <View
+        android:id="@+id/seperator"
+        android:layout_marginTop="23dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#979797"
+        app:layout_constraintTop_toBottomOf="@+id/unit"/>
+
+      <ImageView
+        android:id="@+id/circle"
+        android:background="@drawable/circle"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="13.9dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seperator"/>
+      <ImageView
+        android:background="@drawable/circle"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13.9dp"
+        app:layout_constraintLeft_toRightOf="@+id/circle"
+        app:layout_constraintTop_toBottomOf="@+id/seperator"/>
+
+      <android.support.design.widget.TabLayout
+        android:id="@+id/room_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="298dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle"/>
+
+      <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="#717171"
+      android:text="입장하기"
+      android:textColor="#ffffff"
+      android:textSize="13dp"
+      android:layout_gravity="bottom"/>
+  </LinearLayout>
+</ScrollView>
