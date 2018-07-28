@@ -34,7 +34,6 @@ public class EventRepository {
     }
 
     public interface FetchEventCallback {
-
         void onEventFetched(Event event);
     }
 

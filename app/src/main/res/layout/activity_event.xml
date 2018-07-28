@@ -117,6 +117,7 @@
   </ScrollView>
 
   <Button
+    android:id="@+id/join"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="#8671ff"

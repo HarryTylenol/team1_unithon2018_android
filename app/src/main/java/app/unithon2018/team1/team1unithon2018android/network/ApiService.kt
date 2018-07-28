@@ -2,6 +2,7 @@ package app.unithon2018.team1.team1unithon2018android.network
 
 import app.unithon2018.team1.team1unithon2018android.model.Event
 import app.unithon2018.team1.team1unithon2018android.model.Room
+import app.unithon2018.team1.team1unithon2018android.model.TimeLine
 import app.unithon2018.team1.team1unithon2018android.model.TokenData
 import retrofit2.Call
 import retrofit2.http.*
@@ -31,4 +32,9 @@ interface ApiService {
           @Path("event_id") eventId: Int
   ): Call<Event>
 
+  @GET("/posts")
+  fun fetchTimeLine(
+          @Header("access_token") access_token: String,
+          @Field("page") page: Int
+  ): Call<List<TimeLine>>
 }
