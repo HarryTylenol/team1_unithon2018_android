@@ -1,20 +1,24 @@
 package app.unithon2018.team1.team1unithon2018android.ui.adapter
 
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import app.unithon2018.team1.team1unithon2018android.App
 import app.unithon2018.team1.team1unithon2018android.R
-import app.unithon2018.team1.team1unithon2018android.model.Post
 import app.unithon2018.team1.team1unithon2018android.model.TimeLine
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.TimeLineAdapter.PostViewHolder
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.timeline_item_view.view.*
-import kotlin.properties.Delegates
 
 class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
   private val timelines = mutableListOf<TimeLine>()
+
+  private val timeImgAdapter by lazy {
+    TimeLineImgAdapter()
+  }
 
   override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) = PostViewHolder(viewGroup)
 
@@ -34,8 +38,17 @@ class TimeLineAdapter : RecyclerView.Adapter<PostViewHolder>() {
       }
 
       hash_tags.text = stringBuilder.toString()
+      user_nickname.text = timeLine.user[0].nickname
+      Glide.with(App.getInstance())
+              .load("http://52.79.230.255:5000" + timeLine.user[0].image)
+              .into(user_img)
 
+      with(nested_timeline_recycler) {
+        layoutManager = LinearLayoutManager(App.getInstance(), LinearLayoutManager.HORIZONTAL, false)
+        adapter = timeImgAdapter
+      }
 
+      timeImgAdapter.addImages(timeLine.files)
     }
 
   }

@@ -59,7 +59,7 @@
     <activity
       android:label="@string/title_activity_time_line"
       android:name=".ui.activity.TimeLineActivity"
-      android:theme="@style/AppTheme.NoActionBar">
+      android:theme="@style/AppTheme.NoTitle.White">
     </activity>
   </application>
 

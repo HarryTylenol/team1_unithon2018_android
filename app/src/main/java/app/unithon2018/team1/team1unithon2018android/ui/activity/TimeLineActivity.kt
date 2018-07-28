@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import app.unithon2018.team1.team1unithon2018android.R
@@ -45,6 +46,7 @@ class TimeLineActivity : AppCompatActivity() {
 
     private fun fetchTimeLines() {
         timeRepository.fetchTimeLine(0) { it ->
+            Log.d("zxcvq", it.size.toString() + "!")
             timeAdapter.addTimeLines(it)
         }
     }

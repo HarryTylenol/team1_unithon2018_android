@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         )
       }
       val adapter = RoomAdapter {
-        startActivity(Intent(this@MainActivity, RoomActivity::class.java).apply {
+        startActivity(Intent(this@MainActivity, EventActivity::class.java).apply {
           putExtra("id", it.id)
         })
       }

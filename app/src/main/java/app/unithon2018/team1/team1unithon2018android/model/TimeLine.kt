@@ -32,7 +32,7 @@ package app.unithon2018.team1.team1unithon2018android.model
 //},
 data class TimeLine(
         val create_at: String,
-        val users: List<UserInfo>,
+        val user: List<UserInfo>,
         val files: List<String>,
         val text: String,
         val id: Int,

@@ -36,7 +36,7 @@ interface ApiService {
   @GET("/posts")
   fun fetchTimeLine(
           @Header("access_token") access_token: String,
-          @Field("page") page: Int
+          @Query("page") page: Int
   ): Call<List<TimeLine>>
 
   @GET("/events/{event_id}/leave")
