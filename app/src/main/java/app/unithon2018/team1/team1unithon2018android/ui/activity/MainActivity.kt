@@ -38,16 +38,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
   private val apiService = ApiManager.getApiService()
 
-  private val UPDATE_INTERVAL = (10 * 1000).toLong()
-  private val FASTEST_INTERVAL: Long = 2000
-
   private val roomRepository by lazy { RoomRepository.instance(this, apiService) }
 
   lateinit var map: GoogleMap
   private val locationClient: FusedLocationProviderClient by lazy {
     LocationServices.getFusedLocationProviderClient(this)
   }
-
 
   @SuppressLint("MissingPermission")
   override fun onCreate(savedInstanceState: Bundle?) {
