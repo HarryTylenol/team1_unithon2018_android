@@ -29,9 +29,13 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationRequest
 import android.os.Looper
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
+import app.unithon2018.team1.team1unithon2018android.model.Room
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.maps.model.CircleOptions
+import kotlinx.android.synthetic.main.leave_dialog.*
+import kotlinx.coroutines.experimental.awaitAll
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -58,6 +62,20 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     my_profile_button.setOnClickListener {
       startActivity(Intent(this, MyProfileActivity::class.java))
     }
+    my_profile_button.setOnLongClickListener {
+      val dialog = AlertDialog.Builder(this)
+          .setView(R.layout.leave_dialog)
+          .show()
+      dialog.save.setOnClickListener {
+        startActivity(Intent(this@MainActivity, RoomActivity::class.java).apply {
+          putExtra("id", 1)
+        })
+      }
+      dialog.cancel.setOnClickListener {
+        dialog.dismiss()
+      }
+      false
+    }
 
     refresh_location_button.setOnClickListener {
       refreshLocation()
@@ -82,6 +100,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     refreshLocation()
   }
 
+  var postEventList = listOf<Room>()
+
   private fun onLocationUpdated(location: Location) {
     val latLng = LatLng(
         location.latitude,
@@ -93,6 +113,19 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
       val searchedRoom = async {
         roomRepository.searchRoom(latLng)
       }.await()
+
+      val awaitList = postEventList.filter { searchedRoom.contains(it) }
+          .mapIndexed { index, room ->
+            async { roomRepository.checkIsOut(room.id) }
+          }
+
+      awaitList.awaitAll()
+          .filter { it != null }.forEach {
+
+          }
+
+      postEventList += searchedRoom
+
       val circleFillColor = ContextCompat.getColor(this@MainActivity, R.color.colorCircleFill)
       searchedRoom.sortedByDescending { it.radius.toLong() }.forEach {
         val alpha = when (it.members_count) {

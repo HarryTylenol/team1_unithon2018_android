@@ -17,6 +17,29 @@ class RoomRepository(val context: Context, val apiService: ApiService) {
     fun instance(context: Context, apiService: ApiService) = RoomRepository(context, apiService)
   }
 
+  suspend fun checkIsOut(eventId: Int): Int? = suspendCancellableCoroutine { continuation ->
+
+    val verification = apiService.leaveEvent(accessToken, eventId).execute()
+
+    if (verification.isSuccessful) {
+      continuation.resume(eventId)
+    }
+    else {
+      continuation.resume(null)
+    }
+
+    continuation.invokeOnCancellation {
+      if (continuation.isCancelled) {
+        try {
+          NonCancellable.cancel()
+        }
+        catch (e: Exception) {
+
+        }
+      }
+    }
+  }
+
   suspend fun searchRoom(latlng: LatLng): List<Room> = suspendCancellableCoroutine { continuation ->
     log<RoomRepository>(accessToken)
     val response = apiService.requestEvent(accessToken, latlng.latitude, latlng.longitude).execute()
@@ -37,14 +60,6 @@ class RoomRepository(val context: Context, val apiService: ApiService) {
         }
       }
     }
-  }
-
-  fun addRoom(room: Room) {
-    TODO()
-  }
-
-  fun deleteRoom(room: Room) {
-    TODO()
   }
 
 }
