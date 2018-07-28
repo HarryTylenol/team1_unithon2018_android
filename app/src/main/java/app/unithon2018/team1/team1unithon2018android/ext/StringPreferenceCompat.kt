@@ -11,7 +11,10 @@ open class StringPreferenceCompat(context: Context) {
         this._accessToken = accessToken
     }
 
-    fun getAccessToken() = this._accessToken
+    fun getAccessToken() : String {
+        log<StringPreferenceCompat>(this._accessToken)
+        return this._accessToken
+    }
 
 
 }

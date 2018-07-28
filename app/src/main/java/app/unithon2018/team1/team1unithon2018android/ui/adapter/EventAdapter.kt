@@ -27,8 +27,9 @@ internal class EventAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun addTag(tag: String) {
-        tags.add(tag)
+    fun addTags(tag: List<String>) {
+        tags.clear()
+        tags.addAll(tag)
 
         notifyDataSetChanged()
     }

@@ -6,43 +6,48 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import app.unithon2018.team1.team1unithon2018android.R
 import app.unithon2018.team1.team1unithon2018android.data.EventRepository
+import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
+import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventAdapter
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventPagerAdapter
-import app.unithon2018.team1.team1unithon2018android.ui.adapter.RoomAdapter
 import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : AppCompatActivity() {
     private val apiService = ApiManager.getApiService()
 
-    private val roomAdapter by lazy {
-        RoomAdapter()
+    private val eventAdapter by lazy {
+        EventAdapter()
     }
 
-    private val eventRepository by lazy { EventRepository.instance(apiService) }
+    private val accessToken by StringPreference(this)
+    private val eventRepository by lazy { EventRepository.instance(accessToken, apiService) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
 
-        with(room_recycler) {
+        with(event_recycler) {
             layoutManager = android.support.v7.widget.LinearLayoutManager(this@EventActivity, android.support.v7.widget.LinearLayoutManager.HORIZONTAL, false)
-            adapter = roomAdapter
+            adapter = eventAdapter
         }
 
-        val list = ArrayList<Uri>()
-//    list.add(Uri.parse("R.drawable.lucy.png"))
-
-        room_viewpager.adapter = EventPagerAdapter(this, list)
-
-        room_tablayout.setupWithViewPager(room_viewpager, true)
-
-        fetchEvent()
+        fetchEvent(intent.extras.getInt("id", -1))
     }
 
-    fun fetchEvent() {
-        eventRepository.fetchEvent(1, { it ->
-            val event = it
-        })
+    private fun fetchEvent(id: Int) {
+        eventRepository.fetchEvent(id) { it ->
+            name.text = it.name
+            location.text = it.location
+            date.text = it.start_at + "-" + it.end_at
+            count.text = it.members_count.toString()
+
+            eventAdapter.addTags(it.hashtags)
+
+            Log.d("Zcxv", it.images.count().toString())
+
+            event_viewpager.adapter = EventPagerAdapter(this, it.images)
+            room_tablayout.setupWithViewPager(event_viewpager, true)
+        }
     }
 
 

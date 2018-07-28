@@ -15,7 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 
-class EventPagerAdapter(context: Context, list: ArrayList<Uri>) : PagerAdapter() {
+class EventPagerAdapter(context: Context, list: List<String>) : PagerAdapter() {
 
     private val context = context
     private val list = list
@@ -25,10 +25,12 @@ class EventPagerAdapter(context: Context, list: ArrayList<Uri>) : PagerAdapter()
 
         val roomImage = view.findViewById<ImageView>(R.id.room_image)
 
-        Log.d("zxcv", list[position].toString())
+        val url = "http://52.78.84.8:5000" + list[position]
+
+        Log.d("zxcv", url)
 
         Glide.with(context)
-                .load(list[position])
+                .load(url)
                 .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(roomImage)
 

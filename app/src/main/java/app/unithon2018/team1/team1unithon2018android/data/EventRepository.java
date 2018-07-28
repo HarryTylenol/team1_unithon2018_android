@@ -1,9 +1,11 @@
 package app.unithon2018.team1.team1unithon2018android.data;
 
+import android.content.Context;
 import android.util.Log;
 import app.unithon2018.team1.team1unithon2018android.App;
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference;
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreferenceCompat;
+import app.unithon2018.team1.team1unithon2018android.ext.UtilsKt;
 import app.unithon2018.team1.team1unithon2018android.model.Event;
 import app.unithon2018.team1.team1unithon2018android.network.ApiService;
 import retrofit2.Call;
@@ -16,19 +18,19 @@ public class EventRepository {
 
     private static EventRepository eventRepository;
 
-    private StringPreferenceCompat pref;
+    private String accessToken;
 
-    public static EventRepository instance(ApiService apiService) {
+    public static EventRepository instance(String accessToken, ApiService apiService) {
         if(eventRepository == null) {
-            eventRepository = new EventRepository(apiService);
+            eventRepository = new EventRepository(accessToken, apiService);
         }
 
         return eventRepository;
     }
 
-    private EventRepository(ApiService apiService) {
+    private EventRepository(String accessToken, ApiService apiService) {
         this.apiService = apiService;
-        this.pref = new StringPreferenceCompat(App.getInstance());
+        this.accessToken = accessToken;
     }
 
     public interface FetchEventCallback {
@@ -37,7 +39,7 @@ public class EventRepository {
     }
 
     public void fetchEvent(int eventId, final FetchEventCallback eventCallback) {
-        Call<Event> call = apiService.fetchEvent(pref.getAccessToken(), eventId);
+        Call<Event> call = apiService.fetchEvent(accessToken, eventId);
         call.enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
