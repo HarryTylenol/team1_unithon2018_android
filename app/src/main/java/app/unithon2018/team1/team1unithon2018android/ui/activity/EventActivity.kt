@@ -9,6 +9,7 @@ import app.unithon2018.team1.team1unithon2018android.data.EventRepository
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventAdapter
+import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventFragmentPagerAdapter
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.EventPagerAdapter
 import kotlinx.android.synthetic.main.activity_event.*
 
@@ -38,14 +39,20 @@ class EventActivity : AppCompatActivity() {
         eventRepository.fetchEvent(id) { it ->
             name.text = it.name
             location.text = it.location
-            date.text = it.start_at + "-" + it.end_at
+
+            val start = it.start_at.replace("-", ".")
+            val startDate = start.substring(0, start.indexOf(" "))
+
+            val end = it.end_at.replace("-", ".")
+            val endDate = end.substring(5, 10)
+
+            date.text = startDate + "-" + endDate
+
             count.text = it.members_count.toString()
 
             eventAdapter.addTags(it.hashtags)
 
-            Log.d("Zcxv", it.images.count().toString())
-
-            event_viewpager.adapter = EventPagerAdapter(this, it.images)
+            event_viewpager.adapter = EventFragmentPagerAdapter(supportFragmentManager, it.images)
             room_tablayout.setupWithViewPager(event_viewpager, true)
         }
     }
