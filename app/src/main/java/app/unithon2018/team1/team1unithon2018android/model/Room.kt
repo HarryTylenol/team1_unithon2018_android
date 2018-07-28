@@ -2,6 +2,7 @@ package app.unithon2018.team1.team1unithon2018android.model
 
 data class Room(
     val id: Int,
+    val members_count: Long,
     val description: String,
     val location: String,
     val name: String,
