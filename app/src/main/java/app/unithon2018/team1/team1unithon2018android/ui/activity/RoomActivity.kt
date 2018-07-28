@@ -16,6 +16,10 @@ class RoomActivity : AppCompatActivity() {
 
   private val apiService = ApiManager.getApiService()
 
+  private val roomAdapter by lazy {
+    RoomAdapter()
+  }
+
   private val roomRepository by lazy { RoomRepository.instance(apiService) }
   private val postRepository by lazy { PostRepository.instance(apiService) }
 
@@ -25,7 +29,7 @@ class RoomActivity : AppCompatActivity() {
 
     with(room_recycler) {
       layoutManager = LinearLayoutManager(this@RoomActivity, LinearLayoutManager.HORIZONTAL, false)
-      adapter = RoomAdapter()
+      adapter = roomAdapter
     }
 
     val list = ArrayList<Uri>()
@@ -36,4 +40,7 @@ class RoomActivity : AppCompatActivity() {
     room_tablayout.setupWithViewPager(room_viewpager, true)
   }
 
+  fun addTag() {
+    roomAdapter.addTag("유니톤")
+  }
 }

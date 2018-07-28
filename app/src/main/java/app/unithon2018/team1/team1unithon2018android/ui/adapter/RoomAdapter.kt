@@ -21,6 +21,12 @@ internal class RoomAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    fun addTag(tag: String) {
+        tags.add(tag)
+
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             LayoutInflater.from(parent.context)
                     .inflate(R.layout.room_item_view, parent, false))
