@@ -96,9 +96,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
       val circleFillColor = ContextCompat.getColor(this@MainActivity, R.color.colorCircleFill)
       searchedRoom.sortedByDescending { it.radius.toLong() }.forEach {
         val alpha = when (it.members_count) {
-          in 0..40   -> 20
-          in 40..300 -> 40
-          else       -> 60
+          in 0..40   -> 50
+          in 40..300 -> 100
+          else       -> 180
         }
         map.addCircle(CircleOptions()
                           .strokeWidth(8f)
