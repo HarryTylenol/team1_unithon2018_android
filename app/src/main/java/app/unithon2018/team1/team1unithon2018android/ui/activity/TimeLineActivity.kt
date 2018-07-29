@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import app.unithon2018.team1.team1unithon2018android.R
-import app.unithon2018.team1.team1unithon2018android.data.EventRepository
 import app.unithon2018.team1.team1unithon2018android.data.TimeLineRepository
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager

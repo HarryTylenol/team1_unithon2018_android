@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/send"
+      android:layout_alignParentRight="true"
+      android:background="@null"
+      android:padding="10dp"/>
+
+  </RelativeLayout>
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.UploadActivity">
+    android:orientation="horizontal"
+    android:paddingTop="16dp">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+      android:id="@+id/upload_profile"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="19dp"
+      android:background="@drawable/user"/>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="30dp"
+      android:orientation="vertical">
+
+      <EditText
+        android:id="@+id/upload_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="글 입력 부분"
+        android:textSize="14dp"
+        android:textColor="@color/textPrimaryColor"
+        android:paddingTop="16dp" />
+
+      <EditText
+        android:id="@+id/upload_hashtag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#"
+        android:hint="해시태그"
+        android:textSize="14dp"
+        android:textColor="#8671ff"
+        android:layout_marginTop="20dp"
+        android:paddingTop="16dp"/>
+    </LinearLayout>
+
+  </LinearLayout>
+
+  <HorizontalScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+      android:layout_marginTop="20dp"
+      android:id="@+id/selecet_image"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="center"
+      android:padding="30dp">
+
+    </LinearLayout>
+
+  </HorizontalScrollView>
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_alignParentLeft="true"
+      android:text="게시물에 추가"
+      android:layout_marginLeft="10dp"
+      android:gravity="center_vertical"/>
+
+    <ImageButton
+      android:id="@+id/photoButton"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:src="@drawable/image"
+      android:background="@null"
+      android:layout_toLeftOf="@+id/videoButton"/>
+
+    <ImageButton
+      android:id="@+id/videoButton"
+      android:layout_toLeftOf="@+id/cameraButton"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginRight="10dp"
+      android:layout_marginLeft="10dp"
+      android:src="@drawable/video"
+      android:background="@null"/>
+
+    <ImageButton
+      android:id="@+id/cameraButton"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:src="@drawable/camera"
+      android:background="@null"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="10dp"/>
+
+  </RelativeLayout>
+
+
+</LinearLayout>

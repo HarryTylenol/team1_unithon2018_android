@@ -7,4 +7,5 @@
     <color name="colorLightGray">#e7e7e7</color>
     <color name="colorCircleFill">#28FF6666</color>
     <color name="colorStatusBar">#28000000</color>
+    <color name="textPrimaryColor">#676767</color>
 </resources>
