@@ -14,85 +14,71 @@ import app.unithon2018.team1.team1unithon2018android.data.TimeLineRepository
 import app.unithon2018.team1.team1unithon2018android.ext.StringPreference
 import app.unithon2018.team1.team1unithon2018android.network.ApiManager
 import app.unithon2018.team1.team1unithon2018android.ui.adapter.TimeLineAdapter
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
-import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection
 import kotlinx.android.synthetic.main.activity_time_line.*
 
-class TimeLineActivity : AppCompatActivity(), SwipyRefreshLayout.OnRefreshListener {
+class TimeLineActivity : AppCompatActivity() {
 
 
-    private val apiService = ApiManager.getApiService()
+  private val apiService = ApiManager.getApiService()
 
-    private val timeAdapter by lazy {
-        TimeLineAdapter()
+  private val timeAdapter by lazy { TimeLineAdapter() }
+
+  private val accessToken by StringPreference(this)
+
+  private val timeRepository by lazy { TimeLineRepository.instance(accessToken, apiService) }
+
+  private var page = 0
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_time_line)
+
+    //        setSupportActionBar(toolbar)
+
+    val timeLineName = intent.getStringExtra("name")
+    name.text = timeLineName
+
+    with(timeline_recycler) {
+      layoutManager = LinearLayoutManager(this@TimeLineActivity)
+      adapter = timeAdapter
+      isNestedScrollingEnabled = false
     }
 
-    private val accessToken by StringPreference(this)
+    fetchTimeLines()
 
-    private val timeRepository by lazy { TimeLineRepository.instance(accessToken, apiService) }
+    initializeClickListener()
+  }
 
-    private var page = 0
+  private fun fetchTimeLines() {
+    timeRepository.fetchTimeLine(page++) { it ->
+      Log.d("zxcv", page.toString() + "!")
+      timeAdapter.addTimeLines(it)
+    }
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_time_line)
-
-//        setSupportActionBar(toolbar)
-
-        val timeLineName = intent.getStringExtra("name")
-        name.text = timeLineName
-
-        with(timeline_recycler) {
-            layoutManager = LinearLayoutManager(this@TimeLineActivity)
-            adapter = timeAdapter
-            isNestedScrollingEnabled = false
-        }
-
-        fetchTimeLines()
-
-        initializeClickListener()
+  private fun initializeClickListener() {
+    fab.setOnClickListener { view ->
+      startActivity(Intent(this, UploadActivity::class.java))
     }
 
-    private fun fetchTimeLines() {
-        timeRepository.fetchTimeLine(page++) { it ->
-            Log.d("zxcv", page.toString() + "!")
-            timeAdapter.addTimeLines(it)
-        }
-    }
+  }
 
-    private fun initializeClickListener() {
-        fab.setOnClickListener { view ->
-            startActivity(Intent(this, UploadActivity::class.java))
-        }
+  override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    menuInflater.inflate(R.menu.menu, menu)
 
-        swipe_refresh.setOnRefreshListener(this)
-        swipe_refresh.setColorSchemeColors(Color.YELLOW, Color.RED, Color.GREEN)
-    }
+    return true
+  }
 
-    override fun onRefresh(direction: SwipyRefreshLayoutDirection?) {
-        Handler().postDelayed({
-            fetchTimeLines()
-            Log.d("Zcxv", "d")
-            swipe_refresh.isRefreshing = false
-        }, 3000)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.getItemId()) {
+      R.id.search -> {
         return true
-    }
+      }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.getItemId()) {
-            R.id.search -> {
-                return true
-            }
-
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
+      else        -> {
+        return super.onOptionsItemSelected(item)
+      }
     }
+  }
 
 }
